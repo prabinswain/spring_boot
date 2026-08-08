@@ -1,0 +1,16 @@
+spring:
+  application:
+    name: mapstruct
+
+  datasource:
+    url: jdbc:mysql://localhost:3306/basics
+    username: prabin
+    password: Pkswain@123
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+server:
+  port: 7070
+
+
