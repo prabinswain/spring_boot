@@ -46,6 +46,9 @@
           */
          DispatcherServlet servlet = new DispatcherServlet(springContext);
 
+         Tomcat.addServlet(context, "dispatcherServlet", dispatcherServlet); // register dispatcher servlet with tomcat
+        context.addServletMappingDecoded("/","dispatcherServlet");
+
          tomcat.start();
          tomcat.getServer().await();
 
