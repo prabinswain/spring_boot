@@ -1,3 +1,5 @@
 spring:
   application:
     name: basic-projects
+  main:
+    banner-mode: off
