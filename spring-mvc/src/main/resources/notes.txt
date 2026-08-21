@@ -1,0 +1,54 @@
+
+
+         // thigs i need to do
+         // enable tomcat and set port
+         Tomcat tomcat = new Tomcat(); // creating new Tomcat obj
+         tomcat.setPort(8080); // setting port
+         tomcat.getConnector(); // set the port to connector
+
+         // creating web context
+         String contextPath = ""; // basePath off the app
+         String docBase = new File("src/main/webapp").getAbsolutePath(); // folder Tomcat expecting
+
+         Context context = tomcat.addContext(contextPath, docBase);
+
+         // IOC container and register
+         AnnotationConfigWebApplicationContext springContext = new AnnotationConfigWebApplicationContext();
+         springContext.register(AppConfig.class);
+
+ /* 1. create DispatcherServlet
+            2. add spring context
+            3. for ( DispatcherServlet receives HTTP request from Tomcat and will
+                     use HandlerMapping to findout the correct Controller Class
+                     HandlerAdepter for calling to the exact controller method
+                     Application Inventory
+
+             1. Which Controllers exist?
+             2. Which URL maps to which Controller and Method?
+             3. Which Services are available?
+             4. Which Repositories are available?
+             5. Which Message Converters are available?
+             6. Which Entities are available?
+             7. Which DTOs are available?
+             8. Which Exception Handlers are available?
+             9. Which Configuration Classes are available?
+             10. Which Beans are available?
+             11. Which Filters are available?
+             12. Which Interceptors are available?
+             13. Which Security Configurations are available?
+             14. Which Kafka Producers and Consumers are available?
+             15. Which External APIs / Clients are available?
+             16. Which Database Tables are mapped to which Entities?
+             17. Which Repository Methods / Custom Queries are available?
+             18. Which API endpoints require Authentication / Authorization?
+             19. Which API endpoints are Public?
+             20. Which application properties / configurations are being used?
+          */
+         DispatcherServlet servlet = new DispatcherServlet(springContext);
+
+         tomcat.start();
+         tomcat.getServer().await();
+
+
+     }
+ }
