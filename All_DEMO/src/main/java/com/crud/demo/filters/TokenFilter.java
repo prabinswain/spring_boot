@@ -1,0 +1,41 @@
+package com.crud.demo.filters;
+
+import jakarta.servlet.*;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import org.springframework.core.annotation.Order;
+import org.springframework.stereotype.Component;
+
+import java.io.IOException;
+
+//@Component
+@Order(1)
+public class TokenFilter implements Filter {
+
+    @Override
+    public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
+
+        // before sending the request to DispatcherServlet or filter chain to another filter
+        // we casted to HttpServletRequest and HttpServletResponse to do some operation from HttpServletRequest and response as well
+
+        HttpServletRequest httpServletRequest = (HttpServletRequest) request;
+        HttpServletResponse httpServletResponse = (HttpServletResponse) response;
+
+        System.out.println("In token filter ");
+
+        String token = httpServletRequest.getHeader("token");
+        if (token == null || !token.equals("student123")) {
+            System.out.println("Call returned ");
+            return;
+
+        }
+        System.out.println("call did not returned ");
+        try {
+            chain.doFilter(request, response);
+        } finally {
+            // when the response will come from Dispatcher servlet or from another filter
+            System.out.println("IN finally ");
+        }
+
+    }
+}

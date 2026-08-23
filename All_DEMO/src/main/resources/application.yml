@@ -1,0 +1,29 @@
+server:
+  port: 7070
+
+spring:
+  application:
+    name: Demo1
+  main:
+    banner-mode: off
+
+  web:
+    error:
+      include-message: always # will go to client the real error, only for  debugging propose.
+
+  # DB resources
+  datasource:
+    url: jdbc:mysql://localhost:3306/student_db
+    username: ${DB_USERNAME:root}
+    password: ${DB_PASS:Pkswain@123}
+
+  #jpa
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        format_sql: true # to sql in console with proper formatting
+    show-sql: true
+
+
