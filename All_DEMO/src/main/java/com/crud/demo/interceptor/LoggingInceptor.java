@@ -24,9 +24,9 @@ public class LoggingInceptor implements HandlerInterceptor {
         System.out.println("The the getRemotePort : " + request.getRemotePort());
         System.out.println("The the getServerPort : " + request.getServerPort());
 
-        if (handler instanceof HandlerInterceptor handlerInterceptor){
-            System.out.println(handlerInterceptor.);
-        }
+//        if (handler instanceof HandlerInterceptor handlerInterceptor){
+//            System.out.println(handlerInterceptor.);
+//        }
         return true;
     }
 

@@ -8,6 +8,7 @@ import com.crud.demo.entity.Student;
 import com.crud.demo.exception.DuplicateEmailEntryException;
 import com.crud.demo.exception.StudentNotFoundException;
 import com.crud.demo.repository.StudentRepository;
+import com.crud.demo.util.TrackExecutionTime;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -38,6 +39,7 @@ public class StudentService {
         return mapToStudentResponse(studentResp);
     }
 
+    @TrackExecutionTime
     public CreateStudentResponseDTO getStudentById(Long id) {
         Student student = studentRepository.findByIdAndDeletedIsFalse(id).orElseThrow(() -> new StudentNotFoundException("Student is not present"));
         return mapToStudentResponse(student);

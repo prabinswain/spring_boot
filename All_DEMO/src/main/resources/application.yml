@@ -3,7 +3,7 @@ server:
 
 spring:
   application:
-    name: Demo1
+    name: All-DEMO
   main:
     banner-mode: off
 
@@ -17,6 +17,11 @@ spring:
     username: ${DB_USERNAME:root}
     password: ${DB_PASS:Pkswain@123}
 
+  # jmx and actuator for dignosis
+  jmx:
+    enabling: true
+
+
   #jpa
   jpa:
     hibernate:
@@ -24,6 +29,16 @@ spring:
     properties:
       hibernate:
         format_sql: true # to sql in console with proper formatting
-    show-sql: true
+#    show-sql: true
 
+# management- enabling startup tracing
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
 
+# logging
+logging:
+  level:
+    root: info

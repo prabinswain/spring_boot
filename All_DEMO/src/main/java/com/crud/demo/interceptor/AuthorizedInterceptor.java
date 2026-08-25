@@ -9,11 +9,11 @@ import org.springframework.web.servlet.HandlerInterceptor;
 public class AuthorizedInterceptor implements HandlerInterceptor{
 
 
-    public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
-            throws Exception {
-
-        request.set("x-api-key");
-        return true;
-    }
+//    public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
+//            throws Exception {
+//
+//        request.set("x-api-key");
+//        return true;
+//    }
 
 }

@@ -56,17 +56,17 @@ public class GlobalExceptionHandler {
                         request.getRequestURI()
                         ,fieldErrors));
     }
-    @ExceptionHandler(Exception.class)
-    public ResponseEntity<ErrorResponse> parentException(Exception exception , HttpServletRequest request) {
-
-        return ResponseEntity.status(
-                        HttpStatus.INTERNAL_SERVER_ERROR).
-                        body(new ErrorResponse(
-                        LocalDateTime.now(),
-                        HttpStatus.INTERNAL_SERVER_ERROR.value(),
-                        HttpStatus.INTERNAL_SERVER_ERROR.getReasonPhrase(),
-                        "Something went wrong, please try again later.",
-                        request.getRequestURI()));
-    }
+//    @ExceptionHandler(Exception.class)
+//    public ResponseEntity<ErrorResponse> parentException(Exception exception , HttpServletRequest request) {
+//
+//        return ResponseEntity.status(
+//                        HttpStatus.INTERNAL_SERVER_ERROR).
+//                        body(new ErrorResponse(
+//                        LocalDateTime.now(),
+//                        HttpStatus.INTERNAL_SERVER_ERROR.value(),
+//                        HttpStatus.INTERNAL_SERVER_ERROR.getReasonPhrase(),
+//                        "Something went wrong, please try again later.",
+//                        request.getRequestURI()));
+//    }
 
 }
