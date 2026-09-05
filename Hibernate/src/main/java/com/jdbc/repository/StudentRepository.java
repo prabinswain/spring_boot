@@ -14,39 +14,36 @@ import java.util.List;
 @Repository
 public class StudentRepository {
 
+
     @PersistenceContext
     private EntityManager entityManager;
 
 
-    @Transactional
     public void save(Student student) {
         entityManager.persist(student);
     }
 
-    @Transactional
     public Student findById(Integer id) {
 
         return entityManager.find(Student.class, id);
     }
 
-    @Transactional
     public void deleteStudent(Student student) {
         entityManager.remove(student);
     }
 
-    @Transactional
     public List<Student> findAllStudent() {
 
-        return entityManager.createQuery("" +
+        return entityManager.createQuery(
                         "SELECT s from Student s",
                 Student.class).getResultList();
     }
 
-    @Transactional
+
     public void updateStudent(Student student, String id) {
         Student student1 = entityManager.find(Student.class, id);
         student1.setFirstName(student.getFirstName());
-        student1.setLastName(student.getLastname());
+        student1.setLastName(student.getLastName());
         student1.setEmail(student.getEmail());
         student1.setAge(student.getAge());
 

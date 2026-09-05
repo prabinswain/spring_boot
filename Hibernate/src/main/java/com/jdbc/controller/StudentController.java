@@ -21,10 +21,10 @@ public class StudentController {
 
 
     @PostMapping
-    public ResponseEntity<Student> addStudent(@RequestBody Student student) {
+    public ResponseEntity<String> addStudent(@RequestBody Student student) {
 
         studentService.createStudent(student);
-        return ResponseEntity.status(HttpStatusCode.valueOf(201)).body(null);
+        return ResponseEntity.status(HttpStatusCode.valueOf(201)).body("Student record inserted.");
 
     }
 
@@ -45,12 +45,13 @@ public class StudentController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Student> updateStudent(@RequestBody Student student, @PathVariable String id) {
+    public ResponseEntity<String> updateStudent(@RequestBody Student student, @PathVariable String id) {
 
         studentService.updateStudent(student, id);
-        return ResponseEntity.status(HttpStatusCode.valueOf(204)).body(null);
+        return ResponseEntity.status(HttpStatusCode.valueOf(204)).body("Update successful.");
 
     }
+
 
     @DeleteMapping("/{id}")
     public ResponseEntity<String> removeStudent(@PathVariable Integer id) {
@@ -59,6 +60,17 @@ public class StudentController {
         return ResponseEntity.status(HttpStatusCode.valueOf(200)).body("One student is removed.");
 
     }
+
+//    @GetMapping("/paging")
+//    public  ResponseEntity<List<Student>> getAllResultOnPagingBasics(){
+//
+//        List<Student> studentList =  studentService.getAllStudentByPaging();
+//
+//        for (Student student:studentList){
+//
+//        }
+//        return null;
+//    }
 
 
 }
