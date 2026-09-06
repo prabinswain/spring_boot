@@ -2,8 +2,8 @@ package com.jdbc.model;
 
 import jakarta.persistence.*;
 import lombok.*;
-
 import java.time.LocalDateTime;
+import java.util.HashSet;
 import java.util.Set;
 
 @Getter
@@ -18,7 +18,7 @@ public class Student {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Long id;
 
     @Column(name = "first_name")
     private String firstName;
@@ -75,8 +75,21 @@ public class Student {
     @Column(name = "created_date")
     private LocalDateTime createdAt;
 
-    @OneToMany
-    @JoinColumn(name = "dept_id")
+    @ManyToOne( optional = false , fetch = FetchType.LAZY)
+    @JoinColumn(name = "dept_id",nullable = false)
     private Department department;
+
+    @OneToOne(cascade = CascadeType.PERSIST , fetch = FetchType.LAZY,optional = false)
+    @JoinColumn(name = "profile_id" , nullable = false , unique = true)
+    private StudentProfile profile;
+
+    @ManyToMany
+    @JoinTable( name = "student_course"   // Describes the middle table name
+            , joinColumns = @JoinColumn(name = "student_id") // forign key pointing to owning entity
+            , inverseJoinColumns = @JoinColumn(name = "course_id") // forign key pointing to other entity
+            , uniqueConstraints = @UniqueConstraint(columnNames = {"student_id","course_id"})
+    )
+    private Set<Courses> courses = new HashSet<>();
+
 
 }

@@ -21,9 +21,9 @@ public class StudentController {
 
 
     @PostMapping
-    public ResponseEntity<String> addStudent(@RequestBody Student student) {
+    public ResponseEntity<String> addStudent(@RequestBody Student student , @RequestParam String departmentName) {
 
-        studentService.createStudent(student);
+        studentService.createStudent(student,departmentName);
         return ResponseEntity.status(HttpStatusCode.valueOf(201)).body("Student record inserted.");
 
     }

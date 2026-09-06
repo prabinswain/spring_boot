@@ -22,6 +22,7 @@ public class Department {
 
     private String departmentName;
 
-    @ManyToMany(mappedBy = "department")
-    private List<Student> studentList = new ArrayList<>();
+//    @OneToMany(mappedBy = "department",cascade = CascadeType.PERSIST)
+//    private List<Student> studentList = new ArrayList<>();
+
 }
